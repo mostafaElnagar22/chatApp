@@ -1,0 +1,143 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.navbar-toggler:focus {
+  text-decoration: none;
+  outline: 0;
+  box-shadow: 0 0 0 0.08rem;
+}
+.navbar-toggler:hover {
+  text-decoration: none;
+  outline: 0;
+  box-shadow: 0 0 0 0.01rem;
+}
+.right-side {
+  flex-grow: 1;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  display: flex;
+}
+
+#logBtns {
+  display: flex;
+  align-self: flex-end;
+  gap: 15px;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+.logBtns button {
+  padding: 7px;
+  font-size: 14px;
+}
+
+.form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.1rem rgba(13, 110, 253, 0.25);
+}
+
+.addPostIcon {
+  position: fixed;
+  z-index: 100;
+  bottom: 8%;
+  right: 5%;
+  background-color: white;
+  color: #007bff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.addPostIcon:hover {
+  background-color: white;
+  transform: scale(1.1);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.addPostIcon:active {
+  transform: scale(0.95);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.dropdown-toggle::after {
+  display: none !important;
+}
+.loader-pg {
+  width: 40px;
+  height: 40px;
+  border: 5px dotted #fff;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotation 2s linear infinite;
+  left: calc(50% - 20px);
+  position: fixed;
+  z-index: 10000;
+  bottom: 20px;
+  transform: translateX(-50%);
+  margin: 0 auto;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+.navbar-nav .nav-link {
+  position: relative;
+  color: white; 
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+  color:  #17a2b8;; 
+}
+
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background-color: #007bff; 
+  transition: width 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 49px;
+}
+@media (min-width: 992px) { 
+  .navbar-nav .nav-link:hover::after {
+    width: 100%;
+  }
+ }
+.active-link {
+  color: #00d0fff0 !important;
+  /* font-weight: bold; */
+}
+

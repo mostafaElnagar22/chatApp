@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>postDetails</title>
+    <!-- import bootstrap -->
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="/node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <!-- import sweat-alert -->
+    <script src="/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="/node_modules/sweetalert2/dist/sweetalert2.min.css"
+    />
+
+    <!-- import axios -->
+    <script src="/node_modules/axios/dist/axios.min.js"></script>
+    <!-- import styleSheet -->
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <!-- start Modals  -->
+    <!-- start login Modal -->
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="loginModalLabel">Login</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="userName" class="col-form-label">userName:</label>
+                <input type="text" class="form-control" id="userName" />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="col-form-label">password:</label>
+                <input type="password" class="form-control" id="password" />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="loginSubmit()"
+            >
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end login Modal -->
+    <!-- start register Modal -->
+    <div
+      class="modal fade"
+      id="registerModal"
+      tabindex="-1"
+      aria-labelledby="registerModelLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="registerModelLabel">
+              Register New User
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="nameRegister" class="col-form-label">Name:</label>
+                <input type="text" class="form-control" id="nameRegister" />
+              </div>
+              <div class="mb-3">
+                <label for="userNameRegister" class="col-form-label"
+                  >userName:</label
+                >
+                <input type="text" class="form-control" id="userNameRegister" />
+              </div>
+              <div class="mb-3">
+                <label for="profileImageRegister" class="col-form-label"
+                  >profileImage:</label
+                >
+                <input
+                  type="file"
+                  class="form-control"
+                  id="profileImageRegister"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="passwordRegister" class="col-form-label"
+                  >password:</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="passwordRegister"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="registerSubmit()"
+            >
+              Register
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end register Modal -->
+
+    <!-- end Modals  -->
+    <!-- start navbar -->
+    <div class="container-sm mt-2">
+      <div class="d-flex justify-content-center">
+        <nav
+          class="navbar navbar-expand-lg bg-body-tertiary rounded shadow-sm col-md-9 col-12"
+        >
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/html/index.html">Postify</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav me-4 mb-3 mb-md-3 mb-lg-0">
+                <li class="nav-item">
+                  <a
+                    class="nav-link active"
+                    aria-current="page"
+                    href="/html/index.html"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/html/profile.html">Profile</a>
+                </li>
+              </ul>
+              <div id="profile-content">
+                <img
+                  src=""
+                  alt=""
+                  class="rounded-circle border border-info"
+                  id="profile-image"
+                  style="width: 35px; height: 35px"
+                />
+                <b id="profile-user-name"></b>
+              </div>
+              <div id="logBtns">
+                <button
+                  id="login-btn"
+                  type="button"
+                  class="btn btn-outline-success"
+                  data-bs-toggle="modal"
+                  data-bs-target="#loginModal"
+                >
+                  Login
+                </button>
+
+                <button
+                  id="register-btn"
+                  type="button"
+                  class="btn btn-outline-success"
+                  data-bs-toggle="modal"
+                  data-bs-target="#registerModal"
+                >
+                  Register
+                </button>
+
+                <button
+                  id="logout-btn"
+                  type="button"
+                  class="btn btn-outline-danger"
+                  onclick="logOutBtn()"
+                >
+                  logout
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- end navbar -->
+    <!-- start main content  -->
+    <div class="container-sm mt-2">
+      <div class="d-flex justify-content-center mt-2">
+        <h3 class="col-md-9 col-12 post-owner">
+          <span style="color: rgb(13 202 240)">wait for show</span> post
+        </h3>
+      </div>
+    </div>
+
+    <div class="container-sm mt-2">
+      <div class="d-flex justify-content-center mt-2">
+        <div class="col-md-9 col-12 post-parent">
+          <div id="posts" class="selected-post">
+            <!-- post will be shown here  -->
+            
+
+          </div>
+          <!-- start comments  -->
+          <div id="comments" class="border border-primary p-3">
+            <!-- all comment will be shown here  -->
+             <!-- this is a loader while request  -->
+            <div id="loader" style="display: block; text-align: center;">
+              <div style="border: 4px solid rgb(13 202 240); margin:0 auto ;border-radius: 50%; border-top: 4px solid transparent; width: 40px; height: 40px; animation: spin 1s linear infinite;"></div>
+            </div>
+
+            <!-- post comments will be shown here  -->
+          </div>
+          <!-- end comments  -->
+        </div>
+      </div>
+    </div>
+    <!-- end main content  -->
+    <script>
+      window.addEventListener("pageshow", (event) => {
+        if (
+          event.persisted ||
+          performance.getEntriesByType("navigation")[0].type === "back_forward"
+        ) {
+          location.reload();
+        }
+      });
+    </script>
+      
+    <script type="module" src="/js/postDetails.js"></script>
+  </body>
+</html>
